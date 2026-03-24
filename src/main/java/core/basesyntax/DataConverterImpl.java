@@ -1,0 +1,28 @@
+package core.basesyntax.service.impl;
+
+import core.basesyntax.model.FruitTransaction;
+import core.basesyntax.service.DataConverter;
+import java.util.Arrays;
+import java.util.List;
+
+public class DataConverterImpl implements DataConverter {
+    @Override
+    public List<FruitTransaction> convertToTransaction(List<String> input) {
+        return input.stream().skip(1).map(line -> Arrays.stream(line.split(","))
+                                               .map(String::trim)
+                                               .toList())
+                .map(fruitTransaction -> {
+                    int quantity = Integer.parseInt(fruitTransaction.get(2));
+                    if (quantity < 0) {
+                        throw new IllegalArgumentException(
+                                "Quantity cannot be negative: " + quantity + " for fruit " + fruitTransaction.get(1)
+                        );
+                    }
+                    return new FruitTransaction(
+                            FruitTransaction.Operation.fromCode(fruitTransaction.get(0)),
+                            fruitTransaction.get(1),
+                            quantity
+                    );
+                }).toList();
+    }
+}
