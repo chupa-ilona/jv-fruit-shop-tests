@@ -3,14 +3,12 @@ package core.basesyntax;
 import core.basesyntax.model.FruitTransaction;
 import core.basesyntax.service.DataConverter;
 import core.basesyntax.service.impl.DataConverterImpl;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.Assert;
-import org.junit.BeforeClass;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class DataConverterImplTest {
     private static DataConverter converter;
@@ -30,7 +28,8 @@ public class DataConverterImplTest {
         input.add("r,orange,5");
         List<FruitTransaction> transactions = converter.convertToTransaction(input);
         Assertions.assertEquals(4, transactions.size());
-        Assertions.assertEquals(FruitTransaction.Operation.BALANCE, transactions.get(0).getOperation());
+        Assertions.assertEquals(FruitTransaction.Operation.BALANCE,
+                transactions.get(0).getOperation());
         Assertions.assertEquals("apple", transactions.get(0).getFruit());
         Assertions.assertEquals(10, transactions.get(0).getQuantity());
     }
@@ -40,7 +39,8 @@ public class DataConverterImplTest {
         List<String> input = new ArrayList<>();
         input.add("type,fruit,quantity");
         input.add("b,apple,-10");
-        Assertions.assertThrows(IllegalArgumentException.class, () -> converter.convertToTransaction(input));
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> converter.convertToTransaction(input));
     }
 
     @Test

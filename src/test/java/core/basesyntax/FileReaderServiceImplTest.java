@@ -1,14 +1,15 @@
 package core.basesyntax;
 
 import core.basesyntax.service.impl.FileReaderServiceImpl;
-import core.basesyntax.service.impl.FileWriterServiceImpl;
-import org.junit.jupiter.api.*;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions;
 
 public class FileReaderServiceImplTest {
     private static final String TEST_FILE = "src/test/resources/test_input.csv";
@@ -21,7 +22,8 @@ public class FileReaderServiceImplTest {
 
     @Test
     public void read_validFile_returnsAllLines() throws IOException {
-        Files.writeString(Path.of(TEST_FILE), "type,fruit,quantity\nb,apple,10\ns,banana,5");
+        Files.writeString(Path.of(TEST_FILE),
+                "type,fruit,quantity\nb,apple,10\ns,banana,5");
         List<String> result = fileReader.read(new File(TEST_FILE));
         Assertions.assertEquals(3, result.size());
         Assertions.assertEquals("type,fruit,quantity", result.get(0));

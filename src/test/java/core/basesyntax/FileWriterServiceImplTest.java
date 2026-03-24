@@ -1,11 +1,13 @@
 package core.basesyntax;
 
 import core.basesyntax.service.impl.FileWriterServiceImpl;
-import org.junit.jupiter.api.*;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions;
 
 public class FileWriterServiceImplTest {
     private static final String TEST_FILE = "src/test/resources/test_output.csv";

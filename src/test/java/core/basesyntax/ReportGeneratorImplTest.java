@@ -2,10 +2,11 @@ package core.basesyntax;
 
 import core.basesyntax.db.Storage;
 import core.basesyntax.service.impl.ReportGeneratorImpl;
-import org.junit.jupiter.api.*;
-
 import java.util.HashMap;
 import java.util.Map;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions;
 
 public class ReportGeneratorImplTest {
     private ReportGeneratorImpl reportGenerator;
@@ -57,7 +58,6 @@ public class ReportGeneratorImplTest {
         Storage storage = new Storage(data);
         String report = reportGenerator.generate(storage);
         String[] lines = report.split("\n");
-        // header + 2 fruits = 3 lines
         Assertions.assertEquals(3, lines.length);
     }
 }
