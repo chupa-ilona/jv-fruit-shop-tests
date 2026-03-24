@@ -4,9 +4,9 @@ import core.basesyntax.db.Storage;
 import core.basesyntax.service.impl.ReportGeneratorImpl;
 import java.util.HashMap;
 import java.util.Map;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Assertions;
 
 public class ReportGeneratorImplTest {
     private ReportGeneratorImpl reportGenerator;

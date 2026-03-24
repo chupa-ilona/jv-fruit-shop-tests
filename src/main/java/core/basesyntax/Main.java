@@ -1,8 +1,8 @@
 package core.basesyntax;
 
-import core.basesyntax.service.DataConverter;
 import core.basesyntax.db.Storage;
 import core.basesyntax.model.FruitTransaction;
+import core.basesyntax.service.DataConverter;
 import core.basesyntax.service.FileReaderService;
 import core.basesyntax.service.FileWriterService;
 import core.basesyntax.service.ReportGenerator;
