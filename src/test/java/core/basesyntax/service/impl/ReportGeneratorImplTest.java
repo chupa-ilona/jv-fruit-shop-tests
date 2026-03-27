@@ -1,7 +1,7 @@
-package core.basesyntax;
+package core.basesyntax.service.impl;
 
 import core.basesyntax.db.Storage;
-import core.basesyntax.service.impl.ReportGeneratorImpl;
+
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.Assertions;
