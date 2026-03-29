@@ -1,5 +1,8 @@
 package core.basesyntax.service.impl;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import core.basesyntax.db.Storage;
 import core.basesyntax.model.FruitTransaction;
 import core.basesyntax.strategy.BalanceOperation;
@@ -12,7 +15,6 @@ import core.basesyntax.strategy.SupplyOperation;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -35,7 +37,7 @@ public class ShopServiceImplTest {
         shopService.process(List.of(
                 new FruitTransaction(FruitTransaction.Operation.BALANCE, "apple", 100)
         ));
-        Assertions.assertEquals(100, shopService.getStorage().getStorage().get("apple"));
+        assertEquals(100, shopService.getStorage().getStorage().get("apple"));
     }
 
     @Test
@@ -44,7 +46,7 @@ public class ShopServiceImplTest {
                 new FruitTransaction(FruitTransaction.Operation.BALANCE, "apple", 50),
                 new FruitTransaction(FruitTransaction.Operation.SUPPLY, "apple", 30)
         ));
-        Assertions.assertEquals(80, shopService.getStorage().getStorage().get("apple"));
+        assertEquals(80, shopService.getStorage().getStorage().get("apple"));
     }
 
     @Test
@@ -53,7 +55,7 @@ public class ShopServiceImplTest {
                 new FruitTransaction(FruitTransaction.Operation.BALANCE, "banana", 100),
                 new FruitTransaction(FruitTransaction.Operation.PURCHASE, "banana", 40)
         ));
-        Assertions.assertEquals(60, shopService.getStorage().getStorage().get("banana"));
+        assertEquals(60, shopService.getStorage().getStorage().get("banana"));
     }
 
     @Test
@@ -62,7 +64,7 @@ public class ShopServiceImplTest {
                 new FruitTransaction(FruitTransaction.Operation.BALANCE, "banana", 50),
                 new FruitTransaction(FruitTransaction.Operation.RETURN, "banana", 10)
         ));
-        Assertions.assertEquals(60, shopService.getStorage().getStorage().get("banana"));
+        assertEquals(60, shopService.getStorage().getStorage().get("banana"));
     }
 
     @Test
@@ -75,19 +77,19 @@ public class ShopServiceImplTest {
                 new FruitTransaction(FruitTransaction.Operation.RETURN, "apple", 10),
                 new FruitTransaction(FruitTransaction.Operation.PURCHASE, "apple", 20)
         ));
-        Assertions.assertEquals(90, shopService.getStorage().getStorage().get("apple"));
-        Assertions.assertEquals(107, shopService.getStorage().getStorage().get("banana"));
+        assertEquals(90, shopService.getStorage().getStorage().get("apple"));
+        assertEquals(107, shopService.getStorage().getStorage().get("banana"));
     }
 
     @Test
     public void process_emptyList_storageRemainsEmpty() {
         shopService.process(List.of());
-        Assertions.assertTrue(shopService.getStorage().getStorage().isEmpty());
+        assertTrue(shopService.getStorage().getStorage().isEmpty());
     }
 
     @Test
     public void getStorage_returnsCorrectStorageInstance() {
         Storage storage = shopService.getStorage();
-        Assertions.assertNotNull(storage);
+        assertNotNull(storage);
     }
 }
